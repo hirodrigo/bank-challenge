@@ -9,6 +9,6 @@ import com.challenge.itau.core.domain.Customer
  * based on the provided customer.
 */
 
-interface ConditionEvaluator {
+fun interface ConditionEvaluator {
     fun evaluate(customer: Customer): CardStatus
 }

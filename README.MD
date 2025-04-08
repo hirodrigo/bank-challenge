@@ -81,3 +81,19 @@ The application uses a modular and extensible architecture to define and evaluat
 - Kafka Broker: http://localhost:9092/
 - Customer API: http://localhost:8082/
 - Bank Challenge API: http://localhost:8089/
+
+## Sonar Coverage:
+
+![assets/sonar_coverage.png](assets/sonar_coverage.png)
+
+## Sonar without issues:
+![assets/sonar_no_isssues.png](assets/sonar_no_issues.png)
+
+## Solution Architecture Design:
+![assets/bank_challenge.jpg](assets/bank_challenge.jpg)
+
+## Design Patterns:
+- Hexagonal Architeture: https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html
+- Abstract Factory: https://refactoring.guru/design-patterns/abstract-factory
+- Chain of Responsibility :https://refactoring.guru/design-patterns/chain-of-responsibility
+- Observer: https://refactoring.guru/design-patterns/observer

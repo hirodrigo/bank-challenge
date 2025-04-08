@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam
 
 @Component
 @FeignClient(name = "customerClient", url = "\${customer.service.url}")
-interface CustomerClient {
+fun interface CustomerClient {
 
     @GetMapping("/clientes")
     fun getCustomer(@RequestParam("cpf") id: String): CustomerResponse

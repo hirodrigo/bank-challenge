@@ -27,9 +27,9 @@ class CardsMapper {
             return Customer(
                     id = null,
                     cpf = cardsRequest.customer!!.cpf!!,
-                    age = cardsRequest.customer!!.age!!,
-                    state = cardsRequest.customer!!.state!!,
-                    monthlyIncome = cardsRequest.customer!!.monthlyIncome!!
+                    age = cardsRequest.customer.age!!,
+                    state = cardsRequest.customer.state!!,
+                    monthlyIncome = cardsRequest.customer.monthlyIncome!!
             )
         }
 
@@ -60,13 +60,13 @@ class CardsMapper {
         private fun toCustomerResponse(cardsRequest: CardsRequest): CustomerResponse {
             return CustomerResponse(
                     name = cardsRequest.customer!!.name!!,
-                    cpf = cardsRequest.customer!!.cpf!!,
-                    age = cardsRequest.customer!!.age!!,
-                    birthDate = cardsRequest.customer!!.birthDate!!,
-                    state = cardsRequest.customer!!.state!!,
-                    monthlyIncome = cardsRequest.customer!!.monthlyIncome!!.setScale(2, RoundingMode.HALF_UP),
-                    email = cardsRequest.customer!!.email!!,
-                    whatsappPhone = cardsRequest.customer!!.whatsappPhone!!
+                    cpf = cardsRequest.customer.cpf!!,
+                    age = cardsRequest.customer.age!!,
+                    birthDate = cardsRequest.customer.birthDate!!,
+                    state = cardsRequest.customer.state!!,
+                    monthlyIncome = cardsRequest.customer.monthlyIncome!!.setScale(2, RoundingMode.HALF_UP),
+                    email = cardsRequest.customer.email!!,
+                    whatsappPhone = cardsRequest.customer.whatsappPhone!!
             )
         }
     }
