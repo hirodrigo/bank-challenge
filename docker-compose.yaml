@@ -36,6 +36,7 @@ services:
     container_name: prometheus
     volumes:
       - "./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "prometheus-volume:/etc/prometheus/"
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
@@ -52,6 +53,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
+      - grafana-volume:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - prometheus

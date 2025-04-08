@@ -14,18 +14,18 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-      - targets: ['host.docker.internal:9090']
+      - targets: ['prometheus:9090']
 
   - job_name: 'spring-boot-actuator'
-    scrape_interval: 5s # Define a frequência com que o Prometheus deve coletar métricas
-    metrics_path: '/actuator/prometheus' # O caminho onde as métricas do Micrometer são expostas
+    scrape_interval: 5s # Frequency of scraping the Spring Boot application
+    metrics_path: '/actuator/prometheus' # Path to the Spring Boot actuator metrics endpoint
     static_configs:
-      - targets: ['host.docker.internal:8081'] # O endpoint da sua aplicação Spring Boot
+      - targets: ['bank-challenge:8081'] # Spring Boot application endpoint
         labels:
-          application: itau-challenge
+          application: bank-challenge
 
   - job_name: 'grafana'
     metrics_path: '/'
     scrape_interval: 5s
     static_configs:
-      - targets: ['host.docker.internal:3000']
+      - targets: ['grafana:3000']
