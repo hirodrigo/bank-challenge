@@ -2,6 +2,7 @@ package com.challenge.itau.adapter.web.global
 
 import com.challenge.itau.adapter.web.global.dto.response.error.ErrorDetailResponse
 import com.challenge.itau.adapter.web.global.dto.response.error.ErrorResponse
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,6 +27,7 @@ class GlobalExceptionHandler {
     @Value("\${spring.application.name}")
     lateinit var applicationName: String
 
+    private val log = LoggerFactory.getLogger(this::class.java)
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleValidationExceptions(
@@ -79,6 +81,7 @@ class GlobalExceptionHandler {
                         internalMessage = "Tivemos um problema, mas fique tranquilo que nosso time já foi avisado."
                 )
         )
+        log.error("Error occurred: ${ex.message}", ex)
         return ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR)
     }
 }

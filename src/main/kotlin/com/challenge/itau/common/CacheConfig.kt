@@ -16,7 +16,7 @@ class CacheConfig {
     fun cacheManager(): CacheManager {
         val cacheManager = CaffeineCacheManager()
         cacheManager.setCaffeine(Caffeine.newBuilder()
-            .expireAfterWrite(5, TimeUnit.MINUTES)
+            .expireAfterWrite(5, TimeUnit.SECONDS)
             .maximumSize(1000)
         )
         return cacheManager

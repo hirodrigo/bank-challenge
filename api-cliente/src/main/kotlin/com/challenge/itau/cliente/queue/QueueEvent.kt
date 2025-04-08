@@ -1,6 +1,7 @@
 package com.challenge.itau.cliente.queue
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
@@ -14,6 +15,8 @@ class QueueEvent(
 
     private val objectMapper = ObjectMapper()
 
+    private val log = LoggerFactory.getLogger(this::class.java)
+
     override fun queueEvent(cpf: String, id: String) {
         val message = Event(cpf, id, LocalDateTime.now().toString())
         val messageJson = objectMapper.writeValueAsString(message)
@@ -21,10 +24,10 @@ class QueueEvent(
         kafkaTemplate.send(topicName, messageJson)
             .toCompletableFuture()
             .thenAccept { result ->
-                println("Mensagem enviada com sucesso para o tópico ${result.recordMetadata.topic()} no offset ${result.recordMetadata.offset()}")
+                log.info("Mensagem enviada com sucesso para o tópico ${result.recordMetadata.topic()} no offset ${result.recordMetadata.offset()}")
             }
             .exceptionally { ex ->
-                println("Falha ao enviar mensagem: ${ex.message}")
+                log.info("Falha ao enviar mensagem: ${ex.message}")
                 null
             }
     }

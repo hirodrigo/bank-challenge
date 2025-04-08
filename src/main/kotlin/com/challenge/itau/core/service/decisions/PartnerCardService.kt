@@ -20,11 +20,11 @@ import java.math.BigDecimal
 class PartnerCardService(
         @Value("\${cards.parameters.partner-card.min-income}") private val minIncome: BigDecimal,
         @Value("\${cards.parameters.partner-card.min-age}") private val minAge: Int,
-        @Value("\${cards.parameters.partner-card.combination.allowed-states}") private val allowedStates: List<String>,
+        @Value("\${cards.parameters.partner-card.combination.denied-states}") private val deninedStates: List<String>,
         @Value("\${cards.parameters.partner-card.combination.max-age}") private val maxAge: Int,
 ) : CardDecisionService(CardType.PARTNER_CARD,
         listOf(
                 MinIncomeEvaluator(minIncome),
                 MinAgeEvaluator(minAge),
-                CombinedEvaluator(listOf(StateEvaluator(allowedStates), MaxAgeEvaluator(maxAge)))
+                CombinedEvaluator(listOf(StateEvaluator(deninedStates), MaxAgeEvaluator(maxAge)))
         ))
