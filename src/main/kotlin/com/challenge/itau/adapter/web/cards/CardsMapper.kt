@@ -3,10 +3,12 @@ package com.challenge.itau.adapter.web.cards
 import com.challenge.itau.adapter.web.cards.dto.request.CardsRequest
 import com.challenge.itau.adapter.web.cards.dto.response.CardResponse
 import com.challenge.itau.adapter.web.cards.dto.response.CustomerResponse
+import com.challenge.itau.adapter.web.cards.dto.response.OfferedCardsResponse
 import com.challenge.itau.core.domain.Card
 import com.challenge.itau.core.domain.Customer
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import java.math.RoundingMode
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -38,20 +40,20 @@ class CardsMapper {
             }
 
             return ResponseEntity(
-                    CardResponse(
-                            requestNumber = UUID.randomUUID().toString(),
-                            requestDate = LocalDateTime.now(),
-                            customer = toCustomerResponse(cardsRequest),
-                            offeredCards = cartoes.map { card ->
-                                com.challenge.itau.adapter.web.cards.dto.response.OfferedCardsResponse(
-                                        cardType = card.cardType.localizedName,
-                                        monthlyFee = card.monthlyFee.setScale(2),
-                                        availableLimit = card.availableLimit.setScale(2),
-                                        status = card.status.localizedStatus
-                                )
-                            }
-                    ),
-                    HttpStatus.OK
+                CardResponse(
+                    requestNumber = UUID.randomUUID().toString(),
+                    requestDate = LocalDateTime.now(),
+                    customer = toCustomerResponse(cardsRequest),
+                    offeredCards = cartoes.map { card ->
+                        OfferedCardsResponse(
+                            cardType = card.cardType.localizedName,
+                            monthlyFee = card.monthlyFee.setScale(2, RoundingMode.HALF_UP),
+                            availableLimit = card.availableLimit.setScale(2, RoundingMode.HALF_UP),
+                            status = card.status.localizedStatus
+                        )
+                    }
+                ),
+                HttpStatus.OK
             )
         }
 
@@ -62,7 +64,7 @@ class CardsMapper {
                     age = cardsRequest.customer!!.age!!,
                     birthDate = cardsRequest.customer!!.birthDate!!,
                     state = cardsRequest.customer!!.state!!,
-                    monthlyIncome = cardsRequest.customer!!.monthlyIncome!!,
+                    monthlyIncome = cardsRequest.customer!!.monthlyIncome!!.setScale(2, RoundingMode.HALF_UP),
                     email = cardsRequest.customer!!.email!!,
                     whatsappPhone = cardsRequest.customer!!.whatsappPhone!!
             )

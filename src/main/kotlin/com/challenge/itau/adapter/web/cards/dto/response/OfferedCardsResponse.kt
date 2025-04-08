@@ -1,5 +1,6 @@
 package com.challenge.itau.adapter.web.cards.dto.response
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 
@@ -18,9 +19,11 @@ data class OfferedCardsResponse(
         @JsonProperty("tipo_cartao")
         val cardType: String,
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
         @JsonProperty("valor_anuidade_mensal")
         val monthlyFee: BigDecimal,
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
         @JsonProperty("valor_limite_disponivel")
         val availableLimit: BigDecimal,
 

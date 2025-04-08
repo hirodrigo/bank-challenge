@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
 
 /*
  * This class handles HTTP requests related to card operations.
@@ -29,8 +28,6 @@ class CardsController(
 
     @PostMapping("/cartoes")
     fun requestCard(@Valid @RequestBody cardsRequest: CardsRequest): ResponseEntity<CardResponse> {
-        val correlationId = UUID.randomUUID().toString()
-
         log.info("Received request to create card: {}", cardsRequest)
         val customerData = CardsMapper.toDomain(cardsRequest)
         val cardList = cardRequestPortIn.createCardRequest(customerData)

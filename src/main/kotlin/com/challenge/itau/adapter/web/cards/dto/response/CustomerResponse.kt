@@ -1,5 +1,6 @@
 package com.challenge.itau.adapter.web.cards.dto.response
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -35,6 +36,7 @@ data class CustomerResponse(
         @JsonProperty("estado")
         val state: String,
 
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
         @JsonProperty("renda_mensal")
         val monthlyIncome: BigDecimal,
 
