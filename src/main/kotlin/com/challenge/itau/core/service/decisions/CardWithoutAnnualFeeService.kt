@@ -14,7 +14,7 @@ import java.math.BigDecimal
 
 @Service
 class CardWithoutAnnualFeeService(
-        @Value("\${cards.parameters.partner-card.min-income}") private val minIncome: BigDecimal,
+        @Value("\${cards.parameters.card-without-annual-fee.min-income}") private val minIncome: BigDecimal,
 ) : CardDecisionService(
     CardType.CARD_WITHOUT_ANNUAL_FEE,
     listOf(
