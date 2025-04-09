@@ -7,7 +7,7 @@ The application uses a modular and extensible architecture to define and evaluat
 
 ## Features
 - **Card With Cashback**:
-  - `cards.parameters.card-with-cashback.available-limit`**: Credit limit available for the cashback card.
+  - `cards.parameters.card-with-cashback.available-limit`: Credit limit available for the cashback card.
   - `cards.parameters.card-with-cashback.min-income`: Minimum income required for eligibility.
   - `cards.parameters.card-with-cashback.min-age`: Minimum age required for eligibility.
 
@@ -89,11 +89,14 @@ The application uses a modular and extensible architecture to define and evaluat
 ## Sonar without issues:
 ![assets/sonar_no_isssues.png](assets/sonar_no_issues.png)
 
-## Solution Architecture Design:
-![assets/bank_challenge.jpg](assets/bank_challenge.jpg)
+## Domain:
+![assets/domain.jpg](assets/domain.jpg)
 
-## Design Patterns:
+## Components interactions:
+![assets/interactions.jpg](assets/interactions.jpg)
+
+## Architecture and Design Patterns:
+![assets/patterns.jpg](assets/patterns.jpg)
 - Hexagonal Architeture: https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html
-- Abstract Factory: https://refactoring.guru/design-patterns/abstract-factory
 - Chain of Responsibility :https://refactoring.guru/design-patterns/chain-of-responsibility
 - Observer: https://refactoring.guru/design-patterns/observer
